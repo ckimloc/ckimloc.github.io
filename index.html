@@ -329,7 +329,7 @@
   .entry:hover .hint{ opacity: 1; }
 
   /* ---------- Hover preview panel (desktop only) ---------- */
-
+/* 
   .hover-preview{
     position: fixed;
     top: 50%;
@@ -361,7 +361,52 @@
     font-family: "IBM Plex Mono", monospace;
     font-size: 11px;
     padding: 3px 7px;
-  }
+  } */
+
+.hover-preview{
+  position: fixed;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%) translateX(12px);
+
+  /* Maximum size, but don't force an aspect ratio */
+  width: min(380px, 32vw);
+  max-height: 70vh;
+
+  background: var(--ink);
+  border: 1px solid var(--rule);
+  padding: 8px;
+
+  border-radius: 4px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  z-index: 50;
+}
+
+.hover-preview.visible{
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.hover-preview img{
+  display: block;
+
+  /* Preserve the original image dimensions/aspect ratio */
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: calc(70vh - 16px);
+
+  object-fit: contain;
+}
 
   @media (hover: none), (pointer: coarse), (max-width: 900px){
     .hover-preview{ display: none; }
@@ -386,7 +431,7 @@
     width: 100%;
   }
 
-  .lightbox-frame{
+  /* .lightbox-frame{
     position: relative;
     background: var(--ink);
     line-height: 0;
@@ -398,7 +443,27 @@
     object-fit: contain;
     display: block;
     background: var(--ink);
-  }
+  } */
+
+  .lightbox-frame{
+    position: relative;
+    background: var(--ink);
+    line-height: 0;
+    width: 100%;
+    height: 65vh; /* Sets a fixed height for the image frame */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   } 
+
+  .lightbox-frame img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Scales images to fit inside without stretching or jumping */
+    display: block;
+  } 
 
   .lightbox-top{
     display: flex;
@@ -467,7 +532,7 @@
 <header class="masthead">
   <div class="wrap">
     <!-- EDIT: your name -->
-    <div class="name">Kim Loc Chau</div>
+    <div class="name">Kim Loc Chau, PhD. in Applied Data Science</div>
     <nav class="masthead-links">
       <a href="#work">Work</a>
       <a href="#about">About</a>
@@ -481,7 +546,7 @@
   <section class="hero">
     <div class="main">
       <!-- EDIT: kicker / one-line role -->
-      <p class="kicker">Data scientist &amp; ML engineer</p>
+      <p class="kicker">Data scientist &amp; DevSecOps engineer</p>
       <!-- EDIT: headline -->
       <h1>I build models that turn messy data into decisions worth trusting.</h1>
       <!-- EDIT: subheading -->
@@ -514,7 +579,7 @@
     <article class="entry" data-gallery="mimic" data-title="MIMIC-Graph - Graph-based Medical AI Assistant (Master's thesis)">
       <div class="index">01</div>
       <div class="content">
-        <h3>MIMIC-Graph - Graph-based Medical AI Assistant (Master's thesis)</h3>
+        <h3><u>MIMIC-Graph - Graph-based Medical AI Assistant (Master's thesis)</u></h3>
         <p>Processed and transformed 370,300 clinical notes from MIMIC-IV into structured triples for knowledge graph comprising over 436,000 nodes and 4,653,000 relationships.</p>
         <p>Extracts approximately 100,000 biomedical triples for every 5000 records, each is infused with contextual information and biomedical conditions.</p>
         <p>Achieved 86-91% accuracy with a 20-30% improvement in diagnostic accuracy on multiple medical benchmarks.</p>
@@ -527,7 +592,7 @@
     <article class="entry" data-gallery="medibot" data-title="MediBot - Medical AI Assistant">
       <div class="index">02</div>
       <div class="content">
-        <h3>MediBot - Medical AI Assistant</h3>
+        <h3><u>MediBot - Medical AI Assistant</u></h3>
         <p>RAG-based generative AI chatbot built from The Gale Encyclopedia of Medicine book, comprises 5240 pages - 6 volumes book that covers over 2,000 diseases, disorders, and medical topics.</p>
         <div class="tags"><span>Python</span><span>Retrieval-Augmented Generation</span><span>LangChain</span><span>Streamlit</span></div>
         <div class="hint">hover to preview · click for gallery</div>
@@ -538,7 +603,7 @@
     <article class="entry" data-gallery="braintumor" data-title="Brain Tumor Classification from MRI Images">
       <div class="index">03</div>
       <div class="content">
-        <h3>Brain Tumor Classification from MRI Images</h3>
+        <h3><u>Brain Tumor Classification from MRI Images</u></h3>
         <p>Deep learning-based multi-class classification model in PyTorch to classify brain MRI images into glioma, meningioma, pituitary tumor, and no-tumor categories.</p>
         <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
         <div class="hint">hover to preview · click for gallery</div>
@@ -549,7 +614,7 @@
     <article class="entry" data-gallery="churn" data-title="Diabetic Retinopathy Classification Using Deep Learning">
       <div class="index">04</div>
       <div class="content">
-        <h3>Diabetic Retinopathy Classification Using Deep Learning</h3>
+        <h3><u>Diabetic Retinopathy Classification Using Deep Learning</u></h3>
         <p>Deep learning model using CNN, ResNet, and EfficientNet to classify retinal fundus images into five diabetic retinopathy severity levels using the APTOS 2019 dataset</p>
         <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
         <div class="hint">hover to preview · click for gallery</div>
@@ -560,7 +625,7 @@
     <article class="entry" data-gallery="optic" data-title="Optic Disc and Optic Cup Segmentation">
       <div class="index">05</div>
       <div class="content">
-        <h3>Optic Disc and Optic Cup Segmentation</h3>
+        <h3><u>Optic Disc and Optic Cup Segmentation</u></h3>
         <p>U-Net-based semantic segmentation model in PyTorch to segment optic disc and optic cup regions from retinal fundus images.</p>
         <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
         <div class="hint">hover to preview · click for gallery</div>
@@ -571,7 +636,7 @@
     <article class="entry" data-gallery="bloodvessel" data-title="Retinal Blood Vessel Segmentation">
       <div class="index">06</div>
       <div class="content">
-        <h3>Retinal Blood Vessel Segmentation</h3>
+        <h3><u>Retinal Blood Vessel Segmentation</u></h3>
         <p>U-Net-based semantic segmentation model in PyTorch to perform pixel-level segmentation of retinal blood vessels from fundus photographs.</p>
         <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
         <div class="hint">hover to preview · click for gallery</div>
@@ -586,22 +651,20 @@
     <p class="section-label">About</p>
     <!-- EDIT: your bio -->
     <p>
-      I'm a data scientist with a background in statistics and a habit of
+      I'm a data scientist with a background in cybersecurity and a habit of
       shipping things rather than letting them live in notebooks. I care
       about model reliability as much as model accuracy, and I like
       projects where the hard part is the data, not the algorithm.
     </p>
-    <p>
-      Outside of work I write about applied ML on my blog and occasionally
-      speak at local meetups.
-    </p>
+
 
     <!-- EDIT: optional skills list — delete if not needed -->
     <div class="skills">
-      <div><strong>Languages</strong> Python, SQL, R</div>
-      <div><strong>ML/DL</strong> scikit-learn, PyTorch, Image Classification, Image Segmentation, Model Optimization</div>
+      <div><strong>Languages</strong> Python, R, Bash, SQL</div>
+      <div><strong>Technologies</strong> Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, PyTorch, Spacy, Scispacy, LangChain, Streamlit</div>
+      <div><strong>ML/DL</strong> Image Classification, Image Segmentation, Model Optimization, Feature Engineering</div>
       <div><strong>Data</strong> Pandas, MongoDB, Redis</div>
-      <div><strong>Infra</strong> Docker, FastAPI, Postgres</div>
+      <div><strong>Infra</strong> Docker, Nginx, FastAPI, Postgres</div>
     </div>
   </section>
 
@@ -609,9 +672,9 @@
     <p class="section-label">Get in touch</p>
     <!-- EDIT: your real contact links -->
     <ul class="contact-list">
-      <li>Email — <a href="mailto:you@example.com">ckimloc@gmail.com</a></li>
-      <li>GitHub — <a href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a></li>
-      <li>LinkedIn — <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">linkedin.com/in/kimlocchau</a></li>
+      <li>Email — <a href="mailto:ckimloc@gmail.com">ckimloc@gmail.com</a></li>
+      <li>GitHub — <a href="https://github.com/ckimloc" target="_blank" rel="noopener">github.com/ckimloc</a></li>
+      <li>LinkedIn — <a href="https://linkedin.com/in/kimlocchau" target="_blank" rel="noopener">linkedin.com/in/kimlocchau</a></li>
     </ul>
   </section>
 
@@ -676,7 +739,6 @@
       "images/braintumor/braintumor_4.png",
       "images/braintumor/braintumor_5.png",
       "images/braintumor/braintumor_6.png",
-      "images/braintumor/braintumor_7.png",
     ],
     bloodvessel: [
       "images/bloodvessel/bloodvessel_1.png",

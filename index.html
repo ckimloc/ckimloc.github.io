@@ -363,49 +363,85 @@
     padding: 3px 7px;
   } */
 
-.hover-preview{
+/* .hover-preview{
   position: fixed;
   top: 50%;
   right: 48px;
   transform: translateY(-50%) translateX(12px);
 
-  /* Maximum size, but don't force an aspect ratio */
+
   width: min(380px, 32vw);
   max-height: 70vh;
 
-  background: var(--ink);
+  background: transparent;
   border: 1px solid var(--rule);
   padding: 8px;
 
   border-radius: 4px;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.95);
 
   opacity: 0;
   pointer-events: none;
 
   transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
+    opacity 0.5s ease,
+    transform 0.5s ease;
+
+  z-index: 50;
+} */
+
+
+.hover-preview {
+  position: fixed;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%) translateX(20px) scale(0.75);
+
+  width: min(380px, 32vw);
+  max-height: 70vh;
+
+  background: rgba(34, 29, 22, 0.30); 
+  border: 1px solid var(--rule);
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  box-shadow: 0 18px 50px rgba(0,0,0,0.95);
+
+  /* Important */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
 
   z-index: 50;
 }
 
-.hover-preview.visible{
+.hover-preview.visible {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
+  transform: translateY(-50%) translateX(0) scale(1);
 }
 
-.hover-preview img{
+
+.hover-preview img {
   display: block;
 
-  /* Preserve the original image dimensions/aspect ratio */
   width: auto;
   height: auto;
 
   max-width: 100%;
-  max-height: calc(70vh - 16px);
+  max-height: 50vh;
 
   object-fit: contain;
+
+  flex-shrink: 1;
+
 }
 
   @media (hover: none), (pointer: coarse), (max-width: 900px){
@@ -417,7 +453,7 @@
   .lightbox{
     position: fixed;
     inset: 0;
-    background: rgba(34, 29, 22, 0.94);
+    background: rgba(34, 29, 22, 0.95);
     display: none;
     align-items: center;
     justify-content: center;
@@ -431,23 +467,9 @@
     width: 100%;
   }
 
-  /* .lightbox-frame{
-    position: relative;
-    background: var(--ink);
-    line-height: 0;
-  }
-
-  .lightbox-frame img{
-    width: 100%;
-    max-height: 68vh;
-    object-fit: contain;
-    display: block;
-    background: var(--ink);
-  } */
-
   .lightbox-frame{
     position: relative;
-    background: var(--ink);
+    background: transparent;
     line-height: 0;
     width: 100%;
     height: 65vh; /* Sets a fixed height for the image frame */
@@ -456,14 +478,33 @@
     justify-content: center;
    } 
 
-  .lightbox-frame img{
+  /* .lightbox-frame img{
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
-    object-fit: contain; /* Scales images to fit inside without stretching or jumping */
+    object-fit: contain; 
     display: block;
-  } 
+  }  */
+
+  .lightbox-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+
+    opacity: 1;
+    transform: scale(1);
+    transition:
+      opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lightbox-frame img.changing {
+    opacity: 0;
+    transform: scale(0.97);
+  }
 
   .lightbox-top{
     display: flex;
@@ -483,12 +524,14 @@
 
   .lightbox-close{
     background: none;
-    border: 1px solid var(--paper);
-    color: var(--paper);
+    border: 2px solid var(--paper);
     font-family: "IBM Plex Mono", monospace;
     font-size: 12px;
     padding: 6px 12px;
     cursor: pointer;
+    border-radius: 10px;
+    border-color: var(--paper);
+    color: var(--paper);
   }
   .lightbox-close:hover{ background: var(--paper); color: var(--ink); }
 
@@ -508,6 +551,7 @@
     width: 38px;
     height: 38px;
     cursor: pointer;
+    border-radius: 10px;
   }
   .lightbox-arrow:hover{ background: var(--paper); color: var(--ink); }
 
@@ -799,7 +843,7 @@
         hoverInterval = setInterval(() => {
           i = (i + 1) % images.length;
           hoverImg.src = images[i];
-        }, 900);
+        }, 2000);
       });
 
       entry.addEventListener('mouseleave', () => {
@@ -840,13 +884,33 @@
     startAutoplay();
   }
 
+  // function showLightboxImage(i){
+  //   currentIndex = (i + currentImages.length) % currentImages.length;
+  //   lightboxImg.src = currentImages[currentIndex];
+  //   [...lightboxDots.children].forEach((dot, idx) => {
+  //     dot.classList.toggle('active', idx === currentIndex);
+  //   });
+  // }
   function showLightboxImage(i){
     currentIndex = (i + currentImages.length) % currentImages.length;
-    lightboxImg.src = currentImages[currentIndex];
+
+    // Start transition
+    lightboxImg.classList.add('changing');
+
+    setTimeout(() => {
+      lightboxImg.src = currentImages[currentIndex];
+
+      // Wait for new image to load before showing it
+      lightboxImg.onload = () => {
+        lightboxImg.classList.remove('changing');
+      };
+    }, 500);
+
     [...lightboxDots.children].forEach((dot, idx) => {
       dot.classList.toggle('active', idx === currentIndex);
     });
   }
+
 
   function renderLightboxDots(){
     lightboxDots.innerHTML = '';
@@ -859,7 +923,7 @@
 
   function startAutoplay(){
     clearInterval(autoplayInterval);
-    autoplayInterval = setInterval(() => showLightboxImage(currentIndex + 1), 2200);
+    autoplayInterval = setInterval(() => showLightboxImage(currentIndex + 1), 3000);
   }
   function restartAutoplay(){ startAutoplay(); }
 
@@ -867,6 +931,8 @@
     lightbox.classList.remove('open');
     clearInterval(autoplayInterval);
   }
+
+
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', () => { showLightboxImage(currentIndex - 1); restartAutoplay(); });

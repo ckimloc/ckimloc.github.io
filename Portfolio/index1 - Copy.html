@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kim Loc Chau — Data &amp; ML Portfolio</title>
+<meta name="description" content="Portfolio of data science and machine learning projects.">
+
+<!--
+  =====================================================================
+  HOW TO EDIT THIS FILE
+  =====================================================================
+  Everything you need to change is marked with an EDIT comment.
+  Search for "EDIT:" to jump between the spots that need your info.
+
+  1. Replace the name, tagline, and bio text.
+  2. Replace the project entries in the "SELECTED WORK" section —
+     duplicate one <article class="entry"> block for each project.
+  3. Replace the contact links at the bottom.
+  4. Save this file as index.html, put it in a GitHub repo, and turn
+     on GitHub Pages (Settings → Pages → Deploy from branch → main).
+  =====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper: #F1EAD9;
+    --paper-dim: #E8DFC9;
+    --ink: #221D16;
+    --ink-soft: #4A4033;
+    --muted: #8A7F6C;
+    --pine: #2F5233;
+    --ochre: #A6743A;
+    --rule: rgba(34, 29, 22, 0.16);
+    --max-w: 1100px;
+    --measure: 640px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--pine); color: var(--paper); }
+
+  a{ color: var(--pine); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover{ color: var(--ochre); }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 64px);
+  }
+
+  /* ---------- Header ---------- */
+
+  header.masthead{
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0 14px;
+  }
+
+  .masthead .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .masthead .name{
+    font-family: "Fraunces", serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  nav.masthead-links{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    display: flex;
+    gap: 18px;
+  }
+
+  nav.masthead-links a{ color: var(--ink-soft); }
+  nav.masthead-links a:hover{ color: var(--pine); }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding: 80px 0 64px;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    column-gap: 56px;
+    align-items: start;
+  }
+
+  .hero .main{ grid-column: 1; }
+
+  .hero .kicker{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--pine);
+    margin: 0 0 18px;
+  }
+
+  .hero h1{
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: clamp(36px, 4.2vw, 58px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 16ch;
+  }
+
+  .hero p.lede{
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+    margin: 0;
+  }
+
+  .hero .stats{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    border-left: 1px solid var(--rule);
+    padding-left: 28px;
+    margin-top: 4px;
+  }
+
+  .hero .stat b{
+    display: block;
+    font-family: "Fraunces", serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--pine);
+  }
+
+  .hero .stat span{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 760px){
+    .hero{ grid-template-columns: 1fr; }
+    .hero .stats{
+      grid-column: 1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      border-left: none;
+      border-top: 1px solid var(--rule);
+      padding-left: 0;
+      padding-top: 24px;
+      margin-top: 36px;
+      gap: 36px;
+    }
+  }
+
+  /* ---------- Section labels ---------- */
+
+  .section-label{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    margin: 0 0 28px;
+  }
+
+  section{ padding: 56px 0; }
+  section + section{ padding-top: 0; }
+
+  /* ---------- Work entries ---------- */
+
+  .entry{
+    padding: 34px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 56px 1fr 100px;
+    column-gap: 28px;
+    align-items: baseline;
+  }
+
+  .entry:first-of-type{ padding-top: 0; }
+
+  .entry .index{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+
+  .entry .content{ grid-column: 2; }
+
+  .entry h3{
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 23px;
+    margin: 0 0 8px;
+  }
+
+  .entry h3 a{
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(var(--ochre), var(--ochre));
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+  }
+
+  .entry h3 a:hover{ color: var(--pine); background-image: linear-gradient(var(--pine), var(--pine)); }
+
+  .entry p{
+    margin: 0 0 12px;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    max-width: var(--measure);
+  }
+
+  .entry .tags{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--pine);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .entry .tags span::before{ content: "· "; color: var(--muted); }
+  .entry .tags span:first-child::before{ content: ""; }
+
+  .entry .year{
+    grid-column: 3;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 4px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px){
+    .entry{ grid-template-columns: 30px 1fr; column-gap: 14px; }
+    .entry .year{ grid-column: 2; margin-top: 6px; }
+    .entry .index{ font-size: 12px; }
+  }
+
+  /* ---------- About ---------- */
+
+  .about p{ color: var(--ink-soft); max-width: var(--measure); }
+
+  .about .skills{
+    margin-top: 24px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 2;
+  }
+
+  .about .skills strong{
+    color: var(--ink);
+    font-family: "Source Serif 4", serif;
+    font-weight: 600;
+    display: inline-block;
+    width: 100px;
+  }
+
+  /* ---------- Contact ---------- */
+
+  .contact-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-list li{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+  }
+
+  .contact-list a{ color: var(--ink); }
+  .contact-list a:hover{ color: var(--pine); }
+
+  footer{
+    border-top: 1px solid var(--rule);
+    padding: 24px 0 48px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+
+  /* ---------- Work entries: interactive state ---------- */
+
+  .entry{ cursor: pointer; transition: background 0.15s ease; }
+  .entry:hover{ background: var(--paper-dim); }
+  .entry:hover .index{ color: var(--pine); }
+
+  .entry .hint{
+    grid-column: 2;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .entry:hover .hint{ opacity: 1; }
+
+  /* ---------- Hover preview panel (desktop only) ---------- */
+/* 
+  .hover-preview{
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    width: 300px;
+    aspect-ratio: 4 / 3;
+    background: var(--ink);
+    border: 1px solid var(--rule);
+    padding: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 50;
+  }
+  .hover-preview.visible{ opacity: 1; }
+  .hover-preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hover-preview .cap{
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    padding: 3px 7px;
+  } */
+
+/* .hover-preview{
+  position: fixed;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%) translateX(12px);
+
+
+  width: min(380px, 32vw);
+  max-height: 70vh;
+
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 8px;
+
+  border-radius: 4px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.95);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+
+  z-index: 50;
+} */
+
+
+.hover-preview {
+  position: fixed;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%) translateX(20px) scale(0.75);
+
+  width: min(380px, 32vw);
+  max-height: 70vh;
+
+  background: rgba(34, 29, 22, 0.30); 
+  border: 1px solid var(--rule);
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  box-shadow: 0 18px 50px rgba(0,0,0,0.95);
+
+  /* Important */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+
+  z-index: 50;
+}
+
+.hover-preview.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+
+.hover-preview img {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 50vh;
+
+  object-fit: contain;
+
+  flex-shrink: 1;
+
+}
+
+  @media (hover: none), (pointer: coarse), (max-width: 900px){
+    .hover-preview{ display: none; }
+  }
+
+  /* ---------- Lightbox ---------- */
+
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    background: rgba(34, 29, 22, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 32px;
+  }
+  .lightbox.open{ display: flex; }
+
+  .lightbox-inner{
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .lightbox-frame{
+    position: relative;
+    background: transparent;
+    line-height: 0;
+    width: 100%;
+    height: 65vh; /* Sets a fixed height for the image frame */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   } 
+
+  /* .lightbox-frame img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    display: block;
+  }  */
+
+  .lightbox-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+
+    opacity: 1;
+    transform: scale(1);
+    transition:
+      opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lightbox-frame img.changing {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  .lightbox-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--paper);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .lightbox-title{
+    font-family: "Fraunces", serif;
+    font-size: 20px;
+    color: var(--paper);
+  }
+
+  .lightbox-close{
+    background: none;
+    border: 2px solid var(--paper);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    border-color: var(--paper);
+    color: var(--paper);
+  }
+  .lightbox-close:hover{ background: var(--paper); color: var(--ink); }
+
+  .lightbox-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+  }
+
+  .lightbox-arrow{
+    background: none;
+    border: 1px solid var(--paper);
+    color: var(--paper);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .lightbox-arrow:hover{ background: var(--paper); color: var(--ink); }
+
+  .lightbox-dots{
+    display: flex;
+    gap: 8px;
+  }
+  .lightbox-dots button{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--paper);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+  .lightbox-dots button.active{ background: var(--ochre); border-color: var(--ochre); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <!-- EDIT: your name -->
+    <div class="name">Kim Loc Chau, PhD. in Applied Data Science</div>
+    <nav class="masthead-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="main">
+      <!-- EDIT: kicker / one-line role -->
+      <p class="kicker">Data scientist &amp; DevSecOps engineer</p>
+      <!-- EDIT: headline -->
+      <h1>I build models that turn messy data into decisions worth trusting.</h1>
+      <!-- EDIT: subheading -->
+      <p class="lede">
+        I'm a data scientist working on forecasting, NLP, and applied machine
+        learning. Below is a selection of projects — from research prototypes
+        to models running in production.
+      </p>
+    </div>
+
+    <!-- EDIT: optional stats column — delete this block if you don't want it -->
+    <!-- <div class="stats">
+      <div class="stat"><b>12+</b><span>PROJECTS SHIPPED</span></div>
+      <div class="stat"><b>3</b><span>YEARS EXPERIENCE</span></div>
+      <div class="stat"><b>5</b><span>PUBLISHED PAPERS</span></div>
+    </div> -->
+  </section>
+
+
+  <section id="work">
+    <p class="section-label">Selected work</p>
+
+    <!--
+      EDIT: duplicate this <article> block for each project.
+      data-gallery must match a key in the `projectGalleries` object
+      in the <script> near the bottom of this file — that's where you
+      list the actual image paths for each project.
+      -->
+
+    <article class="entry" data-gallery="mimic" data-title="MIMIC-Graph - Graph-based Medical AI Assistant (Master's thesis)">
+      <div class="index">01</div>
+      <div class="content">
+        <h3><u>MIMIC-Graph - Graph-based Medical AI Assistant (Master's thesis)</u></h3>
+        <p>Processed and transformed 370,300 clinical notes from MIMIC-IV into structured triples for knowledge graph comprising over 436,000 nodes and 4,653,000 relationships.</p>
+        <p>Extracts approximately 100,000 biomedical triples for every 5000 records, each is infused with contextual information and biomedical conditions.</p>
+        <p>Achieved 86-91% accuracy with a 20-30% improvement in diagnostic accuracy on multiple medical benchmarks.</p>
+        <div class="tags"><span>Python</span><span>NLP</span><span>Neo4j</span><span>BERT</span><span>Universal Dependency</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2025</div>
+    </article>
+
+    <article class="entry" data-gallery="medibot" data-title="MediBot - Medical AI Assistant">
+      <div class="index">02</div>
+      <div class="content">
+        <h3><u>MediBot - Medical AI Assistant</u></h3>
+        <p>RAG-based generative AI chatbot built from The Gale Encyclopedia of Medicine book, comprises 5240 pages - 6 volumes book that covers over 2,000 diseases, disorders, and medical topics.</p>
+        <div class="tags"><span>Python</span><span>Retrieval-Augmented Generation</span><span>LangChain</span><span>Streamlit</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2024</div>
+    </article>
+
+    <article class="entry" data-gallery="braintumor" data-title="Brain Tumor Classification from MRI Images">
+      <div class="index">03</div>
+      <div class="content">
+        <h3><u>Brain Tumor Classification from MRI Images</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to segment optic disc and optic cup regions from retinal fundus images.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>    
+
+    <article class="entry" data-gallery="brainseg" data-title="Brain Tumor Image Segmentation from MRI Brain Images">
+      <div class="index">04</div>
+      <div class="content">
+        <h3><u>Brain Tumor Image Segmentation from MRI Brain Images</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to segment brain tumor from MRI images.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>U-net</span><span>Deep learning</span><span>CNN</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>
+
+    <article class="entry" data-gallery="optic" data-title="Optic Disc and Optic Cup Segmentation">
+      <div class="index">05</div>
+      <div class="content">
+        <h3><u>Optic Disc and Optic Cup Segmentation</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to segment optic disc and optic cup regions from retinal fundus images.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>
+
+    <article class="entry" data-gallery="bloodvessel" data-title="Retinal Blood Vessel Segmentation">
+      <div class="index">06</div>
+      <div class="content">
+        <h3><u>Retinal Blood Vessel Segmentation</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to perform pixel-level segmentation of retinal blood vessels from fundus photographs.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>
+
+    <article class="entry" data-gallery="churn" data-title="Diabetic Retinopathy Classification Using Deep Learning">
+      <div class="index">07</div>
+      <div class="content">
+        <h3><u>Diabetic Retinopathy Classification Using Deep Learning</u></h3>
+        <p>Deep learning model using CNN, ResNet, and EfficientNet to classify retinal fundus images into five diabetic retinopathy severity levels using the APTOS 2019 dataset</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>
+
+
+  </section>
+
+  <section id="about" class="about">
+    <p class="section-label">About</p>
+    <!-- EDIT: your bio -->
+    <p>
+      I'm a data scientist with a background in cybersecurity and a habit of
+      shipping things rather than letting them live in notebooks. I care
+      about model reliability as much as model accuracy, and I like
+      projects where the hard part is the data, not the algorithm.
+    </p>
+
+
+    <!-- EDIT: optional skills list — delete if not needed -->
+    <div class="skills">
+      <div><strong>Languages</strong> Python, R, Bash, SQL</div>
+      <div><strong>Technologies</strong> Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, PyTorch, Spacy, Scispacy, LangChain, Streamlit</div>
+      <div><strong>ML/DL</strong> Image Classification, Image Segmentation, Model Optimization, Feature Engineering</div>
+      <div><strong>Data</strong> Pandas, MongoDB, Redis</div>
+      <div><strong>Infra</strong> Docker, Nginx, FastAPI, Postgres</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Get in touch</p>
+    <!-- EDIT: your real contact links -->
+    <ul class="contact-list">
+      <li>Email — <a href="mailto:ckimloc@gmail.com">ckimloc@gmail.com</a></li>
+      <li>GitHub — <a href="https://github.com/ckimloc" target="_blank" rel="noopener">github.com/ckimloc</a></li>
+      <li>LinkedIn — <a href="https://linkedin.com/in/kimlocchau" target="_blank" rel="noopener">linkedin.com/in/kimlocchau</a></li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <!-- EDIT: feel free to change or remove this line -->
+    © 2026 Kim Loc Chau, PhD in Applied Data Science
+  </div>
+</footer>
+
+<!-- Hover preview panel (desktop) -->
+<div class="hover-preview" id="hoverPreview">
+  <img id="hoverPreviewImg" src="" alt="">
+  <div class="cap" id="hoverPreviewCap"></div>
+</div>
+
+<!-- Lightbox (click) -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <div class="lightbox-top">
+      <span class="lightbox-title" id="lightboxTitle"></span>
+      <button class="lightbox-close" id="lightboxClose">CLOSE ✕</button>
+    </div>
+    <div class="lightbox-frame">
+      <img id="lightboxImg" src="" alt="">
+    </div>
+    <div class="lightbox-nav">
+      <button class="lightbox-arrow" id="lightboxPrev">‹</button>
+      <div class="lightbox-dots" id="lightboxDots"></div>
+      <button class="lightbox-arrow" id="lightboxNext">›</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* =====================================================================
+     EDIT: PROJECT IMAGES
+     =====================================================================
+     List the images for each project here. The key (e.g. "churn") must
+     match the data-gallery attribute on the matching <article class="entry">
+     above. Put your image files in an "images/" folder next to this HTML
+     file and point to them, e.g. "images/churn-1.jpg".
+
+     Until you add real images, this uses generated placeholder graphics
+     so the feature works out of the box — replace them with screenshots
+     of your actual work (charts, dashboards, notebook output, etc).
+     ===================================================================== */
+  const projectGalleries = {
+    medibot: [
+      "images/medibot/medibot_1.png",
+      "images/medibot/medibot_2.png",
+      "images/medibot/medibot_3.png",
+      "images/medibot/medibot_4.png",
+      "images/medibot/medibot_5.png",
+    ],
+    braintumor: [
+      "images/braintumor/braintumor_1.jpg",
+      "images/braintumor/braintumor_2.jpg",
+      "images/braintumor/braintumor_3.png",
+      "images/braintumor/braintumor_4.png",
+      "images/braintumor/braintumor_5.png",
+      "images/braintumor/braintumor_6.png",
+    ],
+    bloodvessel: [
+      "images/bloodvessel/bloodvessel_1.png",
+      "images/bloodvessel/bloodvessel_2.png",
+      "images/bloodvessel/bloodvessel_3.png",
+    ],
+    optic: [
+      "images/optic/optic_1.png",
+      "images/optic/optic_2.png",
+      "images/optic/optic_3.png",
+    ],
+    mimic: [
+      "images/mimic/mimic_1.png",
+      "images/mimic/mimic_2.png",
+      "images/mimic/mimic_3.png",
+      "images/mimic/mimic_4.png",
+      "images/mimic/mimic_5.png",
+      "images/mimic/mimic_6.png",
+      "images/mimic/mimic_7.png",
+      "images/mimic/mimic_8.png",
+    ],   
+    brainseg: [
+      "images/brainseg/brainseg_1.png",
+      "images/brainseg/brainseg_2.png",
+      "images/brainseg/brainseg_3.png",
+      "images/brainseg/brainseg_4.png",
+      "images/brainseg/brainseg_5.png",
+      "images/brainseg/brainseg_6.png",
+      "images/brainseg/brainseg_7.png",
+    ],  
+  };
+
+  // Generates a simple labeled placeholder image so the demo works
+  // before you've added real screenshots. Safe to delete once every
+  // gallery above points to real image files.
+  function placeholder(label, color){
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+        <rect width="100%" height="100%" fill="${color}"/>
+        <text x="50%" y="50%" fill="#F1EAD9" font-family="monospace" font-size="28"
+              text-anchor="middle" dominant-baseline="middle">${label}</text>
+      </svg>`;
+    return "data:image/svg+xml;base64," + btoa(svg);
+  }
+
+  /* ---------------- Hover preview (desktop, pointer:fine) ---------------- */
+
+  const hoverPreview = document.getElementById('hoverPreview');
+  const hoverImg = document.getElementById('hoverPreviewImg');
+  const hoverCap = document.getElementById('hoverPreviewCap');
+  let hoverInterval = null;
+
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  document.querySelectorAll('.entry').forEach(entry => {
+    const key = entry.dataset.gallery;
+    const images = projectGalleries[key];
+    if (!images) return;
+
+    if (canHover){
+      entry.addEventListener('mouseenter', () => {
+        let i = 0;
+        hoverImg.src = images[i];
+        hoverCap.textContent = entry.dataset.title;
+        hoverPreview.classList.add('visible');
+        clearInterval(hoverInterval);
+        hoverInterval = setInterval(() => {
+          i = (i + 1) % images.length;
+          hoverImg.src = images[i];
+        }, 1500);
+      });
+
+      entry.addEventListener('mouseleave', () => {
+        hoverPreview.classList.remove('visible');
+        clearInterval(hoverInterval);
+      });
+    }
+
+    // Click anywhere on the entry (except the title link) opens the lightbox
+    entry.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return; // let the project link navigate normally
+      openLightbox(key, entry.dataset.title);
+    });
+  });
+
+  /* ---------------- Lightbox (click, autoplay slideshow) ---------------- */
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDots = document.getElementById('lightboxDots');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentImages = [];
+  let currentIndex = 0;
+  let autoplayInterval = null;
+
+  function openLightbox(key, title){
+    currentImages = projectGalleries[key];
+    if (!currentImages || !currentImages.length) return;
+    currentIndex = 0;
+    lightboxTitle.textContent = title;
+    renderLightboxDots();
+    showLightboxImage(0);
+    lightbox.classList.add('open');
+    startAutoplay();
+  }
+
+  // function showLightboxImage(i){
+  //   currentIndex = (i + currentImages.length) % currentImages.length;
+  //   lightboxImg.src = currentImages[currentIndex];
+  //   [...lightboxDots.children].forEach((dot, idx) => {
+  //     dot.classList.toggle('active', idx === currentIndex);
+  //   });
+  // }
+  function showLightboxImage(i){
+    currentIndex = (i + currentImages.length) % currentImages.length;
+
+    // Start transition
+    lightboxImg.classList.add('changing');
+
+    setTimeout(() => {
+      lightboxImg.src = currentImages[currentIndex];
+
+      // Wait for new image to load before showing it
+      lightboxImg.onload = () => {
+        lightboxImg.classList.remove('changing');
+      };
+    }, 500);
+
+    [...lightboxDots.children].forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
+  }
+
+
+  function renderLightboxDots(){
+    lightboxDots.innerHTML = '';
+    currentImages.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.addEventListener('click', () => { showLightboxImage(idx); restartAutoplay(); });
+      lightboxDots.appendChild(dot);
+    });
+  }
+
+  function startAutoplay(){
+    clearInterval(autoplayInterval);
+    autoplayInterval = setInterval(() => showLightboxImage(currentIndex + 1), 3000);
+  }
+  function restartAutoplay(){ startAutoplay(); }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    clearInterval(autoplayInterval);
+  }
+
+
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', () => { showLightboxImage(currentIndex - 1); restartAutoplay(); });
+  lightboxNext.addEventListener('click', () => { showLightboxImage(currentIndex + 1); restartAutoplay(); });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight'){ showLightboxImage(currentIndex + 1); restartAutoplay(); }
+    if (e.key === 'ArrowLeft'){ showLightboxImage(currentIndex - 1); restartAutoplay(); }
+  });
+</script>
+
+</body>
+</html>

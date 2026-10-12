@@ -6,22 +6,6 @@
 <title>Kim Loc Chau — Data &amp; ML Portfolio</title>
 <meta name="description" content="Portfolio of data science and machine learning projects.">
 
-<!--
-  =====================================================================
-  HOW TO EDIT THIS FILE
-  =====================================================================
-  Everything you need to change is marked with an EDIT comment.
-  Search for "EDIT:" to jump between the spots that need your info.
-
-  1. Replace the name, tagline, and bio text.
-  2. Replace the project entries in the "SELECTED WORK" section —
-     duplicate one <article class="entry"> block for each project.
-  3. Replace the contact links at the bottom.
-  4. Save this file as index.html, put it in a GitHub repo, and turn
-     on GitHub Pages (Settings → Pages → Deploy from branch → main).
-  =====================================================================
--->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -633,34 +617,37 @@
       <div class="year">2025</div>
     </article>
 
-    <article class="entry" data-gallery="medibot" data-title="MediBot - Medical AI Assistant">
+    <article class="entry" data-gallery="oct" data-title="Retinal OCT Image Classification">
       <div class="index">02</div>
       <div class="content">
-        <h3><u>MediBot - Medical AI Assistant</u></h3>
-        <p>RAG-based generative AI chatbot built from The Gale Encyclopedia of Medicine book, comprises 5240 pages - 6 volumes book that covers over 2,000 diseases, disorders, and medical topics.</p>
-        <div class="tags"><span>Python</span><span>Retrieval-Augmented Generation</span><span>LangChain</span><span>Streamlit</span></div>
-        <div class="hint">hover to preview · click for gallery</div>
-      </div>
-      <div class="year">2024</div>
-    </article>
-
-    <article class="entry" data-gallery="braintumor" data-title="Brain Tumor Classification from MRI Images">
-      <div class="index">03</div>
-      <div class="content">
-        <h3><u>Brain Tumor Classification from MRI Images</u></h3>
-        <p>U-Net-based semantic segmentation model in PyTorch to segment optic disc and optic cup regions from retinal fundus images.</p>
-        <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
+        <h3><u>Retinal OCT Image Classification</u></h3>
+        <p>Ultilized OCT 2017 dataset contains 84,484 retinal optical coherence tomography (OCT) images</p>
+        <p>Classified images into four categories: CNV, DME, DRUSEN, and NORMAL.</p>
+        <p>Developed 3 models for classification including CNN, ResNet, and Vision Transformer</p>
+        <div class="tags"><span>Python</span><span>Vision Transformer</span><span>CNN</span><span>ResNet</span></div>
         <div class="hint">hover to preview · click for gallery</div>
       </div>
       <div class="year">2026</div>
-    </article>    
+    </article>
 
-    <article class="entry" data-gallery="brainseg" data-title="Brain Tumor Image Segmentation from MRI Brain Images">
+    <article class="entry" data-gallery="octa500" data-title="Artery and Capillary Segmentation in Retinal OCTA Images">
+      <div class="index">03</div>
+      <div class="content">
+        <h3><u>Artery and Capillary Segmentation in Retinal OCTA Images</u></h3>
+        <p>Developed a deep learning model using the OCTA-500 dataset to segment retinal blood vessels from OCT angiography images.</p>
+        <p>Performed pixel-level segmentation of retinal <b>arteries</b> and <b>capillaries</b> from OCT angiography images.</p>
+        <div class="tags"><span>Python</span><span>Vision Transformer</span><span>U-Net</span><span>U-Net++</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>
+
+    <article class="entry" data-gallery="bloodvessel" data-title="Retinal Blood Vessel Segmentation">
       <div class="index">04</div>
       <div class="content">
-        <h3><u>Brain Tumor Image Segmentation from MRI Brain Images</u></h3>
-        <p>U-Net-based semantic segmentation model in PyTorch to segment brain tumor from MRI images.</p>
-        <div class="tags"><span>Python</span><span>PyTorch</span><span>U-net</span><span>Deep learning</span><span>CNN</span></div>
+        <h3><u>Retinal Blood Vessel Segmentation</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to perform pixel-level segmentation of retinal blood vessels from fundus photographs.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
         <div class="hint">hover to preview · click for gallery</div>
       </div>
       <div class="year">2026</div>
@@ -677,19 +664,53 @@
       <div class="year">2026</div>
     </article>
 
-    <article class="entry" data-gallery="bloodvessel" data-title="Retinal Blood Vessel Segmentation">
+    <article class="entry" data-gallery="brisc" data-title="Brain MRI Classification and Tumor Segmentation">
       <div class="index">06</div>
       <div class="content">
-        <h3><u>Retinal Blood Vessel Segmentation</u></h3>
-        <p>U-Net-based semantic segmentation model in PyTorch to perform pixel-level segmentation of retinal blood vessels from fundus photographs.</p>
+        <h3><u>Brain MRI Classification and Tumor Segmentation</u></h3>
+        <p>Developed a deep learning pipeline using the BRISC 2025 dataset to classify brain MRI images into tumor categories and perform pixel-level tumor-region segmentation.</p>
+        <p>Implemented and evaluated image classification and segmentation architectures, including CNN, ResNet, U-Net-based and Vision Transformer (ViT).</p>
+        <div class="tags"><span>Python</span><span>Vision Transformer</span><span>U-Net</span><span>U-Net++</span><span>ResNet</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>
+
+    <article class="entry" data-gallery="medibot" data-title="MediBot - Medical AI Assistant">
+      <div class="index">07</div>
+      <div class="content">
+        <h3><u>MediBot - Medical AI Assistant</u></h3>
+        <p>RAG-based generative AI chatbot built from The Gale Encyclopedia of Medicine book, comprises 5240 pages - 6 volumes book that covers over 2,000 diseases, disorders, and medical topics.</p>
+        <div class="tags"><span>Python</span><span>Retrieval-Augmented Generation</span><span>LangChain</span><span>Streamlit</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2024</div>
+    </article>
+
+    <article class="entry" data-gallery="braintumor" data-title="Brain Tumor Classification from MRI Images">
+      <div class="index">08</div>
+      <div class="content">
+        <h3><u>Brain Tumor Classification from MRI Images</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to segment optic disc and optic cup regions from retinal fundus images.</p>
         <div class="tags"><span>Python</span><span>PyTorch</span><span>Deep learning</span><span>CNN</span></div>
+        <div class="hint">hover to preview · click for gallery</div>
+      </div>
+      <div class="year">2026</div>
+    </article>    
+
+    <article class="entry" data-gallery="brainseg" data-title="Brain Tumor Image Segmentation from MRI Brain Images">
+      <div class="index">09</div>
+      <div class="content">
+        <h3><u>Brain Tumor Image Segmentation from MRI Brain Images</u></h3>
+        <p>U-Net-based semantic segmentation model in PyTorch to segment brain tumor from MRI images.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>U-net</span><span>Deep learning</span><span>CNN</span></div>
         <div class="hint">hover to preview · click for gallery</div>
       </div>
       <div class="year">2026</div>
     </article>
 
     <article class="entry" data-gallery="churn" data-title="Diabetic Retinopathy Classification Using Deep Learning">
-      <div class="index">07</div>
+      <div class="index">10</div>
       <div class="content">
         <h3><u>Diabetic Retinopathy Classification Using Deep Learning</u></h3>
         <p>Deep learning model using CNN, ResNet, and EfficientNet to classify retinal fundus images into five diabetic retinopathy severity levels using the APTOS 2019 dataset</p>
@@ -823,7 +844,33 @@
       "images/brainseg/brainseg_5.png",
       "images/brainseg/brainseg_6.png",
       "images/brainseg/brainseg_7.png",
-    ],  
+    ],
+    oct: [
+      "images/oct/vit_1.png",
+      "images/oct/vit_2.png",
+      "images/oct/vit_3.png",
+      "images/oct/vit_4.png",
+    ],
+    octa500: [
+      "images/octa500/output_unet.png",
+      "images/octa500/output_capillary_unetp.png",
+      "images/octa500/output_capillary_unetp2.png",
+      "images/octa500/output_unet2.png",
+    ],
+    brisc: [
+      "images/brisc/prediction2.png",
+      "images/brisc/vit_classification.png",
+      "images/brisc/loss.png",
+      "images/brisc/vit4.png",
+      "images/brisc/dice_pred.png",
+      "images/brisc/seg2.png",
+      "images/brisc/seg3.png",
+      "images/brisc/seg4.png",
+      "images/brisc/vit2.png",
+      "images/brisc/vit3.png",
+      "images/brisc/vit4.png",
+      "images/brisc/dice.png",
+    ]    
   };
 
   // Generates a simple labeled placeholder image so the demo works
